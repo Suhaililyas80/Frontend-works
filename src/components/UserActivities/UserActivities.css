@@ -1,0 +1,145 @@
+.user-activities-main {
+  background: #fff;
+  padding: 32px 24px;
+  box-shadow: 0 4px 24px #0001;
+  width: 100%;
+  margin-left: 56px;
+  transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
+.user-activities-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #283593;
+  margin-bottom: 24px;
+  margin-top: 8px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.search-form {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.search-form input {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  flex: 1 1 180px;
+  min-width: 120px;
+  background: #f7f9fb;
+}
+
+.useractivities-btn {
+  padding: 10px 28px;
+  font-size: 1rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.18s;
+  font-weight: 600;
+}
+
+.useractivities-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.useractivities-btn:not([disabled]):hover {
+  background: #4f46e5;
+}
+
+.activities-table {
+  margin-top: 10px;
+  width: 100%;
+  background: #fff;
+  border-radius: 6px;
+  max-height: 80vh;
+  box-shadow: 0 2px 8px #0001;
+  overflow-x: auto;
+  overflow-y: auto;
+  /* NO display: flex here! */
+}
+
+.activities-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 600px;
+  background: #fff;
+  margin: 0;
+}
+
+.activities-table th,
+.activities-table td {
+  border: 1px solid #e0e0e0;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.activities-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #283593;
+}
+
+.activities-table tr:nth-child(even) {
+  background: #f7f9fb;
+}
+
+.loading {
+  text-align: center;
+  color: #6366f1;
+  font-size: 1.1rem;
+  margin: 30px 0;
+  font-weight: 600;
+}
+
+.error {
+  text-align: center;
+  color: #e11d48;
+  font-size: 1rem;
+  margin: 28px 0;
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .user-activities-main {
+    padding: 12px 4px 20px 4px;
+    border-radius: 0;
+    min-height: 100vh;
+    max-width: 100vw;
+  }
+  .user-activities-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+  .search-form input {
+    min-width: 90px;
+    font-size: 0.95rem;
+  }
+  .useractivities-btn {
+    font-size: 0.95rem;
+    padding: 7px 14px;
+  }
+  .activities-table th,
+  .activities-table td {
+    padding: 6px 8px;
+    font-size: 0.94rem;
+  }
+  .activities-table table {
+    min-width: 340px;
+  }
+}

@@ -1,0 +1,144 @@
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+} */
+
+.dashboard-main {
+  min-height: 100vh;
+  width: 100vw;
+  background: #f7f9fb;
+  display: flex;
+  align-items: flex-start;
+  padding: 0;
+}
+
+/* Main content always visible, only shifted right if sidebar is open */
+.dashboard-container {
+  background: #fff;
+  padding: 32px 24px;
+  box-shadow: 0 4px 24px #0001;
+  width: 100%;
+  margin-left: 56px;
+  transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
+.dashboard-container.sidebar-shift {
+  margin-left: 180px; /* match Sidebar open width */
+}
+
+/* All other styles remain the same */
+
+.dashboard-title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: blue;
+  margin-bottom: 24px;
+  margin-top: 24px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.dashboard-search-form {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.dashboard-search-form input {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  flex: 1 1 180px;
+  min-width: 3px;
+}
+
+.dashboard-btn {
+  padding: 12px 40px;
+  font-size: 1rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dashboard-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.dashboard-actions-row {
+  display: flex;
+  justify-content: flex-start; /* ensures left alignment */
+  align-items: center;
+  gap: 8px; /* space between buttons */
+  margin-bottom: 12px; /* space below the row */
+}
+.dashboard-table-wrapper {
+  width: 100%;
+  margin-top: 16px;
+  /* margin-bottom: 24px; */
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 75vh;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px #0001;
+}
+
+.dashboard-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #fff;
+  margin: 0 auto;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+  border: 1px solid #ddd;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.dashboard-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+  .dashboard-container {
+    padding: 12px 4px;
+    border-radius: 0;
+    min-height: 100vh;
+    max-width: 100vw;
+    margin-left: 56px;
+  }
+  .dashboard-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  .dashboard-search-form input {
+    min-width: 120px;
+    font-size: 0.95rem;
+  }
+  .dashboard-btn {
+    font-size: 0.95rem;
+    padding: 6px 12px;
+  }
+  .dashboard-table th,
+  .dashboard-table td {
+    padding: 6px 8px;
+    font-size: 0.94rem;
+  }
+}
