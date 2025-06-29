@@ -58,8 +58,26 @@ export function DeleteUsers({ selectedUserIds, onDeleteSuccess }) {
       </button>
       {console.log(showModal)}
       {showModal && (
-        <div className="model">
-          <div className="modal-content">
+        <div className="model-overlay">
+          <div
+            className="modal-content"
+            style={{
+              padding: "20px",
+              backgroundColor: "white",
+              borderRadius: "10px",
+              maxWidth: "400px",
+              margin: "auto",
+            }}
+          >
+            <h2
+              style={{
+                textAlign: "center",
+                color: "",
+                marginBottom: "20px",
+              }}
+            >
+              Confirm Deletion
+            </h2>
             <p>Are you sure you want to delete the selected users?</p>
             <button
               onClick={handleDelete}

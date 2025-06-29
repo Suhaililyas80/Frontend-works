@@ -46,7 +46,7 @@ export function AssignRoleC({ selectedUserId, onAssignSuccess }) {
         onClick={handleOpenModal}
         disabled={!selectedUserId}
         style={{
-          backgroundColor: "green",
+          backgroundColor: "blue",
           color: "white",
           padding: "10px 20px",
           border: "none",
@@ -58,8 +58,27 @@ export function AssignRoleC({ selectedUserId, onAssignSuccess }) {
       </button>
       {showModal && (
         <div className="modal-overlay">
-          <div className="modal-content">
-            <h2>Assign Role</h2>
+          <div
+            className="modal-content"
+            style={{
+              padding: "20px",
+              backgroundColor: "white",
+              borderRadius: "10px",
+              maxWidth: "400px",
+              margin: "auto",
+            }}
+          >
+            <h2
+              style={{
+                textAlign: "center",
+                marginBottom: "20px",
+                color: "#333",
+                fontSize: "24px",
+                fontWeight: "bold",
+              }}
+            >
+              Assign Role
+            </h2>
             <input
               type="text"
               value={role}
@@ -77,7 +96,6 @@ export function AssignRoleC({ selectedUserId, onAssignSuccess }) {
                 border: "none",
                 borderRadius: "5px",
                 cursor: "pointer",
-                marginRight: "10px",
               }}
             >
               {isLoading ? "Assigning..." : "Assign Role"}

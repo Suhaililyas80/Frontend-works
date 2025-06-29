@@ -11,6 +11,10 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Logout from "./components/Logout/Logout";
 import UserActivities from "./components/UserActivities/UserActivities";
 import { isAuthenticated } from "./api"; // Assuming this function checks authentication status
+import AllTasks from "./components/AllTasks/Alltasks";
+import { CreateTasks } from "./components/CreateTasks/CreateTasks";
+import { VmockDashboard } from "./components/VmockDashboard/VmockDashboard";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   return (
@@ -19,10 +23,39 @@ function App() {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Registration} />
-          <PrivateRoute path="/Dashboard" component={Dashboard} />
-          <PrivateRoute path="/logout" component={Logout} />
-          <PrivateRoute path="/UserActivities" component={UserActivities} />
-          <Redirect from="/" to="/login" />
+          <Route
+            path="/AllTasks"
+            render={() => (
+              <Layout>
+                <AllTasks />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/UserActivities"
+            render={() => (
+              <Layout>
+                <UserActivities />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/Dashboard"
+            render={() => (
+              <Layout>
+                <Dashboard />
+              </Layout>
+            )}
+          />
+          {/* Add more routes as needed */}
+          <Route path="/createtask" component={CreateTasks} />
+          <Route path="/VmockDashboard" component={VmockDashboard} />
+          <Route path="/Layout" component={Layout} />
+          {/* Redirect from root to login */}
+          {/* Private routes */}
+          {/* <PrivateRoute path="/Dashboard" component={Dashboard} /> */}
+          <PrivateRoute path="/logout" component={Logout} />̀
+          {/* <Redirect from="/" to="/login" /> */}
         </Switch>
       </div>
     </Router>

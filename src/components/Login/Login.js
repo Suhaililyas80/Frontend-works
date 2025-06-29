@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./Login.css";
 import { loginUser } from "../../api";
-import { storeAccessToken } from "../../api";
+// import { storeAccessToken } from "../../api";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -33,9 +33,18 @@ function Login() {
       try {
         const res = await loginUser(email, password);
         setMessage(res.data?.message || "Login Successful");
-        storeAccessToken(res.data?.token);
-
-        history.push("/Dashboard");
+        // store the access token in cookie
+        const token = res.data?.token;
+        if (!token) {
+          setMessage("Login Failed: No token received");
+          setLoading(false);
+          return;
+        }
+        //store in cookie only
+        document.cookie = `access_token=${token}; path=/; max-age=${
+          60 * 60 * 24 * 7
+        }`;
+        history.push("/VmockDashboard");
       } catch (err) {
         setMessage("Login Failed");
       }

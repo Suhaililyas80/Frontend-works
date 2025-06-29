@@ -5,13 +5,12 @@ import { useHistory } from "react-router-dom";
 function Sidebar({ open, onToggle }) {
   const history = useHistory();
 
-  const handleLogoutClick = () => {
-    history.push("/logout");
-  };
   const onUserActivity = () => {
     history.push("/UserActivities");
   };
-
+  const handletaskmanagementClick = () => {
+    history.push("/VmockDashboard");
+  };
   return (
     <div className={`sidebar-root${open ? " open" : ""}`}>
       <button
@@ -28,8 +27,12 @@ function Sidebar({ open, onToggle }) {
           <button className="sidebar-menu-btn" onClick={onUserActivity}>
             User Activity
           </button>
-          <button className="sidebar-menu-btn" onClick={handleLogoutClick}>
-            Logout
+
+          <button
+            className="sidebar-menu-btn"
+            onClick={handletaskmanagementClick}
+          >
+            VmockDashboard
           </button>
         </div>
       )}

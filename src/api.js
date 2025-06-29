@@ -11,10 +11,16 @@ export async function loginUser(email, password) {
 export function storeAccessToken(token) {
   window.sessionStorage.setItem("accessToken", token);
 }
-// retrieves token from session storage
-export function getAccessToken() {
-  return window.sessionStorage.getItem("accessToken");
+// function to read cookie
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
 }
+
+// retrieves token from cookie
+export const getAccessToken = () => getCookie("access_token");
+
 // use token to logout user
 export const logout = () => {
   const accessToken = getAccessToken();
@@ -29,6 +35,9 @@ export const logout = () => {
 export const registerUser = (name, email, password, password_confirmation) => {
   return axios.post("http://localhost:8000/auth/register", null, {
     params: { name, email, password, password_confirmation },
+    headers: {
+      Authorization: `Bearer ${getAccessToken()}`,
+    },
   });
 };
 
@@ -87,4 +96,125 @@ export const AssignRole = (user_id, role) => {
   return axios.post("http://localhost:8000/auth/assign-role", null, {
     params: { user_id, role },
   });
+};
+
+export const getTasks = (params = {}) => {
+  const accessToken = getAccessToken();
+  if (!accessToken) {
+    console.error("Access token is missing. User not authorized.");
+    return Promise.reject(new Error("User not authorized"));
+  }
+  return axios.post(
+    "http://localhost:8000/auth/get-tasks",
+    null, // no body
+    {
+      params, // query params
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+};
+
+export const updateTaskStatus = (taskId, status) => {
+  const accessToken = getAccessToken();
+  if (!accessToken) {
+    console.error("Access token is missing. User not authorized.");
+    return Promise.reject(new Error("User not authorized"));
+  }
+  return axios.post(
+    `http://localhost:8000/auth/update-task-status/${taskId}`,
+    null, // no body
+    {
+      params: { status }, // query params
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+};
+
+export const createTasks = (user_id, title, description, end_date) => {
+  const accessToken = getAccessToken();
+  if (!accessToken) {
+    console.error("Access token is missing. User not authorized.");
+    return Promise.reject(new Error("User not authorized"));
+  }
+  return axios.post(
+    "http://localhost:8000/auth/create-task",
+    null, // no body
+    {
+      params: { user_id, title, description, end_date }, // query params
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+};
+
+//get user by token
+export const getUserByToken = () => {
+  const accessToken = getAccessToken();
+  if (!accessToken) {
+    console.error("Access token is missing. User not authorized.");
+    return Promise.reject(new Error("User not authorized"));
+  }
+  return axios.post("http://localhost:8000/auth/get-user-detail", null, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+};
+
+export const getNumberoftasksbystatus = (params = {}) => {
+  const accessToken = getAccessToken();
+  if (!accessToken) {
+    console.error("Access token is missing. User not authorized.");
+    return Promise.reject(new Error("User not authorized"));
+  }
+  return axios.post(
+    "http://localhost:8000/auth/get-number-of-tasks-bystatus",
+    null, // no body
+    {
+      params, // query params
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+};
+
+export const updatetaskdetails = (taskId, params) => {
+  const accessToken = getAccessToken();
+  if (!accessToken) {
+    console.error("Access token is missing. User not authorized.");
+    return Promise.reject(new Error("User not authorized"));
+  }
+  return axios.post(
+    `http://localhost:8000/auth/update-task/${taskId}`,
+    null, // no body
+    {
+      params, // query params
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+};
+
+export const getTasksduetoday = () => {
+  const accessToken = getAccessToken();
+  if (!accessToken) {
+    console.error("Access token is missing. User not authorized.");
+    return Promise.reject(new Error("User not authorized"));
+  }
+  return axios.post(
+    "http://localhost:8000/auth/get-tasks-duetoday",
+    null, // no body
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
 };

@@ -3,6 +3,7 @@ import { UserListing } from "../../api";
 import Sidebar from "../Sidebar/Sidebar";
 import "../Sidebar/Sidebar.css";
 import "./Dashboard.css";
+import { useHistory } from "react-router-dom";
 import { handleCSV } from "../CsvDowanloadB";
 import { DeleteUsers } from "../DeleteUsers";
 import { AssignRoleC } from "../AssignRole";
@@ -15,6 +16,7 @@ function Dashboard() {
   const [role, setRole] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const history = useHistory();
   // select ids
   const [selectedUserIds, setSelectedUserIds] = useState([]);
 
@@ -83,16 +85,21 @@ function Dashboard() {
 
   // download csv functionality in dashboard
 
+  const handleCreateTask = () => {
+    history.push("/createtask");
+  };
+
+  const handleCreateUser = () => {
+    history.push("/register");
+  };
+
   return (
     <div className="dashboard-main">
-      <Sidebar
-        open={sidebarOpen}
-        onToggle={() => setSidebarOpen((open) => !open)}
-      />
+      {/* <Sidebar open={sidebarOpen} onToggle={() => setSidebarOpen((o) => !o)} /> */}
       <div
         className={`dashboard-container${sidebarOpen ? " sidebar-shift" : ""}`}
       >
-        <h1 className="dashboard-title">UserDashboard</h1>
+        <h1 className="dashboard-title">UserManagement</h1>
 
         <form className="dashboard-search-form" onSubmit={handleSearch}>
           <input
@@ -141,15 +148,19 @@ function Dashboard() {
               fetchUsers();
             }}
           />
-          {selectedUserId && (
-            <AssignRoleC
-              selectedUserId={selectedUserId}
-              onAssignSuccess={() => {
-                setSelectedUserId(null);
-                fetchUsers();
-              }}
-            />
-          )}
+          <AssignRoleC
+            selectedUserId={selectedUserId}
+            onAssignSuccess={() => {
+              setSelectedUserId(null);
+              fetchUsers();
+            }}
+          />
+          <button className="Create-btn" onClick={handleCreateTask}>
+            Create_Task
+          </button>
+          <button className="Create-btn" onClick={handleCreateUser}>
+            Create_User
+          </button>
         </div>
         <div className="dashboard-table-wrapper">
           {loading ? (

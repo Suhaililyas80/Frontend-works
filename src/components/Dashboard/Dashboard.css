@@ -1,13 +1,13 @@
-/* *,
+*,
 *::before,
 *::after {
   box-sizing: border-box;
-} */
+}
 
 .dashboard-main {
   min-height: 100vh;
   width: 100vw;
-  background: #f7f9fb;
+  background: none;
   display: flex;
   align-items: flex-start;
   padding: 0;
@@ -81,6 +81,16 @@
   align-items: center;
   gap: 8px; /* space between buttons */
   margin-bottom: 12px; /* space below the row */
+}
+.Create-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: blue;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 .dashboard-table-wrapper {
   width: 100%;
