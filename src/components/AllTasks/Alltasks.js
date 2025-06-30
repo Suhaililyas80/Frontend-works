@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getTasks, updateTaskStatus, updatetaskdetails } from "../../api";
 import "./AllTasks.css";
+import { useLocation } from "react-router-dom";
 
 const AllTasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -14,6 +15,23 @@ const AllTasks = () => {
     description: "",
     end_date: "",
   });
+
+  const location = useLocation();
+
+  useEffect(() => {
+    // Parse query params
+    const params = new URLSearchParams(location.search);
+    const statusParam = params.get("status") || "";
+    const dueParam = params.get("due") || "";
+
+    if (statusParam || dueParam) {
+      // If dueParam is used, you might want to set a predefined status or filter
+      setStatus(statusParam);
+      // You can also handle other params similarly
+      fetchTasks({ status: statusParam, due: dueParam });
+    }
+    // eslint-disable-next-line
+  }, [location.search]);
 
   //modal for updating task details
   const openUpdateModal = (task) => {

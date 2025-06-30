@@ -6,6 +6,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { FaUserCircle } from "react-icons/fa";
 import { getTasksduetoday } from "../../api";
+import { Link } from "react-router-dom";
 
 export function VmockDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -150,21 +151,33 @@ export function VmockDashboard() {
           <div className="vmock-dashboard-chart">
             <HighchartsReact highcharts={Highcharts} options={chartOptions} />
           </div>
-          <div className="vmock-dashboard-summary">
+          {/* <div className="vmock-dashboard-summary">
             <div>
               <strong>Total Tasks:</strong> {taskStatusData.total}
             </div>
             <div>
-              <span className="stat stat-pending">Pending:</span>{" "}
-              {taskStatusData.pending}
+              <Link
+                to="/AllTasks?status=pending"
+                className="stat stat-pending stat-link"
+              >
+                Pending: {taskStatusData.pending}
+              </Link>
             </div>
             <div>
-              <span className="stat stat-inprogress">In Progress:</span>{" "}
-              {taskStatusData.inProgress}
+              <Link
+                to="/AllTasks?status=in_progress"
+                className="stat stat-inprogress stat-link"
+              >
+                In Progress: {taskStatusData.inProgress}
+              </Link>
             </div>
             <div>
-              <span className="stat stat-completed">Completed:</span>{" "}
-              {taskStatusData.completed}
+              <Link
+                to="/AllTasks?status=completed"
+                className="stat stat-completed stat-link"
+              >
+                Completed: {taskStatusData.completed}
+              </Link>
             </div>
             <div>
               <span className="stat stat-deleted">Deleted:</span>{" "}
@@ -174,11 +187,43 @@ export function VmockDashboard() {
               <span className="stat stat-tasksduetoday">TodaydueTasks:</span>{" "}
               {tasksDueToday}
             </div>
-          </div>
-          {/* <div className="vmock-dashboard-tasks-today">
-            <strong>TasksDeadlineToday:</strong> {tasksDueToday}
           </div> */}
         </main>
+        <div className="vmock-dashboard-summary-row">
+          <Link to="/AllTasks" className="stat-box stat-total stat-link">
+            <div className="stat-label">Total Tasks</div>
+            <div className="stat-value">{taskStatusData.total}</div>
+          </Link>
+          <Link
+            to="/AllTasks?status=pending"
+            className="stat-box stat-pending stat-link"
+          >
+            <div className="stat-label">Pending</div>
+            <div className="stat-value">{taskStatusData.pending}</div>
+          </Link>
+          <Link
+            to="/AllTasks?status=in_progress"
+            className="stat-box stat-inprogress stat-link"
+          >
+            <div className="stat-label">In Progress</div>
+            <div className="stat-value">{taskStatusData.inProgress}</div>
+          </Link>
+          <Link
+            to="/AllTasks?status=completed"
+            className="stat-box stat-completed stat-link"
+          >
+            <div className="stat-label">Completed</div>
+            <div className="stat-value">{taskStatusData.completed}</div>
+          </Link>
+          <div className="stat-box stat-deleted">
+            <div className="stat-label">Deleted</div>
+            <div className="stat-value">{taskStatusData.deleted}</div>
+          </div>
+          <div className="stat-box stat-tasksduetoday">
+            <div className="stat-label">Today Due</div>
+            <div className="stat-value">{tasksDueToday}</div>
+          </div>
+        </div>
       </div>
     </div>
   );
