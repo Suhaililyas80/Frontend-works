@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -16,14 +16,15 @@ import { CreateTasks } from "./components/CreateTasks/CreateTasks";
 import { VmockDashboard } from "./components/VmockDashboard/VmockDashboard";
 import Layout from "./components/Layout/Layout";
 import { NotifyUser } from "./components/NotifyUser";
+import Notification from "./components/Notification/Notification";
+import { useSelector } from "react-redux";
 
 function App() {
+  const userId = useSelector((state) => state.login.user_id);
   return (
     <Router>
-      <>
-        <NotifyUser userId={77} />
-      </>
       <div className="App">
+        {userId && <NotifyUser userId={userId} />}
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Registration} />
@@ -48,6 +49,14 @@ function App() {
             render={() => (
               <Layout>
                 <Dashboard />
+              </Layout>
+            )}
+          />
+          <Route
+            path="/Notification"
+            render={() => (
+              <Layout>
+                <Notification />
               </Layout>
             )}
           />

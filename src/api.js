@@ -252,3 +252,20 @@ export const getAllNotifications = () => {
     }
   );
 };
+
+export const markAsRead = (notificationId) => {
+  const accessToken = getAccessToken();
+  if (!accessToken) {
+    console.error("Access token is missing. User not authorized.");
+    return Promise.reject(new Error("User not authorized"));
+  }
+  return axios.post(
+    `http://localhost:8000/auth/mark-as-read/${notificationId}`,
+    null, // no body
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+};

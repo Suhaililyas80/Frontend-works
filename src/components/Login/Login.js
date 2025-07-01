@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import "./Login.css";
 import { loginUser } from "../../api";
 // import { storeAccessToken } from "../../api";
+import { useDispatch } from "react-redux";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -10,6 +11,8 @@ function Login() {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
 
   const validate = () => {
     const newErrors = {};
@@ -44,6 +47,13 @@ function Login() {
         document.cookie = `access_token=${token}; path=/; max-age=${
           60 * 60 * 24 * 7
         }`;
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: {
+            user_id: res.data.user_id || null,
+          },
+        });
+
         history.push("/VmockDashboard");
       } catch (err) {
         setMessage("Login Failed");

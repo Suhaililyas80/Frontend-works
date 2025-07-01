@@ -7,6 +7,8 @@ import HighchartsReact from "highcharts-react-official";
 import { FaUserCircle } from "react-icons/fa";
 import { getTasksduetoday } from "../../api";
 import { Link } from "react-router-dom";
+import { getUnreadNotifications } from "../../api"; // Assuming this function fetches unread notifications
+// import { store } from "../../Redux/store"; // Assuming you have a Redux store setup
 
 export function VmockDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -19,6 +21,7 @@ export function VmockDashboard() {
     deleted: 0,
     total: 0,
   });
+  // console.log(store.getState());
 
   // get tasks due today its count
   const [tasksDueToday, setTasksDueToday] = useState(0);
@@ -30,6 +33,20 @@ export function VmockDashboard() {
       })
       .catch(() => {
         setTasksDueToday(0);
+      });
+  }, []);
+
+  // get unread notifications count
+  const [unreadNotifications, setUnreadNotifications] = useState(0);
+  useEffect(() => {
+    getUnreadNotifications()
+      .then((response) => {
+        const count = response.data.count || 0;
+        console.log("Unread Notifications Count:", count);
+        setUnreadNotifications(typeof count === "number" ? count : 0);
+      })
+      .catch(() => {
+        setUnreadNotifications(0);
       });
   }, []);
 
@@ -223,6 +240,17 @@ export function VmockDashboard() {
             <div className="stat-value">{tasksDueToday}</div>
           </div>
         </div>
+        <Link
+          to="/Notification"
+          className="stat-box stat-notifications stat-link"
+        >
+          <div className="stat-label">Unread Notifications</div>
+          <div className="stat-value">
+            {unreadNotifications > 0
+              ? unreadNotifications
+              : "No new notifications"}
+          </div>
+        </Link>
       </div>
     </div>
   );

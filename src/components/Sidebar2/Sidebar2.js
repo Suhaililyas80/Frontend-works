@@ -17,6 +17,9 @@ function Sidebar2({ open, onToggle }) {
   const handleUserActivityClick = () => {
     history.push("/UserActivities");
   };
+  const handleNotificationClick = () => {
+    history.push("/Notification");
+  };
 
   return (
     <div className={`sidebar2-root${open ? " open" : ""}`}>
@@ -43,6 +46,13 @@ function Sidebar2({ open, onToggle }) {
           >
             User Activity
           </button>
+          <button
+            className="sidebar-menu-btn"
+            onClick={handleNotificationClick}
+          >
+            Notification
+          </button>
+
           <button className="sidebar-menu-btn" onClick={handleLogoutClick}>
             Logout
           </button>
