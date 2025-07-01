@@ -12,6 +12,8 @@
     "bootstrap": "^5.3.6",
     "highcharts": "^12.3.0",
     "highcharts-react-official": "^3.2.2",
+    "laravel-echo": "^2.1.6",
+    "pusher-js": "^8.4.0",
     "react": "^16.14.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^16.14.0",

@@ -15,10 +15,14 @@ import AllTasks from "./components/AllTasks/Alltasks";
 import { CreateTasks } from "./components/CreateTasks/CreateTasks";
 import { VmockDashboard } from "./components/VmockDashboard/VmockDashboard";
 import Layout from "./components/Layout/Layout";
+import { NotifyUser } from "./components/NotifyUser";
 
 function App() {
   return (
     <Router>
+      <>
+        <NotifyUser userId={77} />
+      </>
       <div className="App">
         <Switch>
           <Route path="/login" component={Login} />

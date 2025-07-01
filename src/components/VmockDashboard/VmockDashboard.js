@@ -25,9 +25,8 @@ export function VmockDashboard() {
   useEffect(() => {
     getTasksduetoday()
       .then((response) => {
-        const data = response.data.data || {};
-        console.log("Tasks due today:", data);
-        setTasksDueToday(data || 0);
+        const count = response.data.data;
+        setTasksDueToday(typeof count === "number" ? count : 0);
       })
       .catch(() => {
         setTasksDueToday(0);

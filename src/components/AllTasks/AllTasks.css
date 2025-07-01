@@ -13,6 +13,8 @@
   color: #2d4a60;
   letter-spacing: 0.5px;
   font-weight: 700;
+  min-height: calc(100vh-200px);
+  /* display: flex; */
 }
 
 .search-form {

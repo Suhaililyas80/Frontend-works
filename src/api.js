@@ -218,3 +218,37 @@ export const getTasksduetoday = () => {
     }
   );
 };
+
+export const getUnreadNotifications = () => {
+  const accessToken = getAccessToken();
+  if (!accessToken) {
+    console.error("Access token is missing. User not authorized.");
+    return Promise.reject(new Error("User not authorized"));
+  }
+  return axios.post(
+    "http://localhost:8000/auth/count-notification-of-user",
+    null, // no body
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+};
+
+export const getAllNotifications = () => {
+  const accessToken = getAccessToken();
+  if (!accessToken) {
+    console.error("Access token is missing. User not authorized.");
+    return Promise.reject(new Error("User not authorized"));
+  }
+  return axios.post(
+    "http://localhost:8000/auth/get-all-notifications",
+    null, // no body
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+};
