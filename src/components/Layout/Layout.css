@@ -1,0 +1,128 @@
+:root {
+  --sidebar-open-width: 180px;
+  --sidebar-closed-width: 56px;
+  --topbar-height: 60px;
+}
+
+/* Sidebar2: fixed left */
+.sidebar2-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-open-width);
+  height: 100vh;
+  background: #fff;
+  z-index: 100;
+  transition: width 0.3s;
+}
+.sidebar2-root:not(.open) {
+  width: var(--sidebar-closed-width);
+}
+
+/* Topbar: fixed top, flush with sidebar */
+.responsive-layout-topbar {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-open-width); /* overridden by inline style */
+  width: calc(
+    100% - var(--sidebar-open-width)
+  ); /* overridden by inline style */
+  height: var(--topbar-height);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  z-index: 101;
+  border-bottom: 1px solid #e5e7eb;
+  color: #000;
+  transition: left 0.3s, width 0.3s;
+}
+
+/* Main content always below topbar, to right of sidebar */
+.responsive-layout-main {
+  position: relative;
+  background: none;
+  min-height: calc(200vh - var(--topbar-height));
+  padding: 0;
+  box-sizing: border-box;
+  transition: margin-left 0.3s;
+  padding-top: 0;
+  overflow-x: auto; /* <-- prevents overflow under topbar */
+}
+
+.main-content-inner {
+  max-width: 1400px; /* or 100% */
+  margin: 0 auto;
+  padding: 2.5rem 2vw;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.responsive-welcome-message {
+  font-size: 2rem;
+  font-weight: 500;
+  color: black;
+}
+.responsive-welcome-message span {
+  color: blue;
+  font-weight: 700;
+}
+.responsive-profile-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.responsive-profile-icon {
+  color: blue;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.responsive-profile-icon:hover {
+  color: #c7e3ff;
+}
+.responsive-profile-popover {
+  position: absolute;
+  top: 2.2rem;
+  right: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 2px 12px #0001;
+  font-size: 1rem;
+  z-index: 200;
+  min-width: 170px;
+  color: #22223b;
+  max-width: 90vw;
+  word-break: break-word;
+}
+
+/* Responsive sidebar and topbar */
+@media (max-width: 900px) {
+  :root {
+    --sidebar-open-width: 120px;
+    --sidebar-closed-width: 44px;
+  }
+  .responsive-layout-topbar {
+    padding: 0 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .responsive-layout-topbar {
+    height: 48px;
+    padding: 0 0.5rem;
+  }
+  .main-content-inner {
+    padding: 1rem 0.2rem;
+  }
+  .responsive-profile-popover {
+    min-width: 130px;
+    padding: 0.5rem 0.3rem;
+    font-size: 0.98rem;
+  }
+  .responsive-welcome-message {
+    font-size: 1rem;
+  }
+}
