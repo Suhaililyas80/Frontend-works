@@ -263,14 +263,14 @@ const AllTasks = () => {
           </table>
         </div>
       )}
-      {console.log(
+      {/* {console.log(
         "showModal:",
         showModal,
         "selectedTask:",
         selectedTask,
         "modalFields:",
         modalFields
-      )}
+      )} */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modalll">

@@ -235,6 +235,9 @@
 .stat-tasksduetoday {
   border-bottom: 3px solid #343a40;
 }
+.stat-notifications {
+  border-bottom: 3px solid blue;
+}
 /* Large Tablet and below: stack chart and summary vertically */
 @media (max-width: 1024px) {
   .vmock-dashboard-main {
