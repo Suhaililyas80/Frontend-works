@@ -1,12 +1,12 @@
-*,
+/* *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
+} */
 
 .dashboard-main {
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   background: none;
   display: flex;
   align-items: flex-start;
@@ -14,8 +14,8 @@
 }
 
 /* Main content always visible, only shifted right if sidebar is open */
-.dashboard-container {
-  background: #fff;
+/* .dashboard-container {
+  background: none;
   padding: 32px 24px;
   box-shadow: 0 4px 24px #0001;
   width: 100%;
@@ -25,10 +25,10 @@
   flex-direction: column;
   align-items: stretch;
   min-height: 100vh;
-}
+} */
 
 .dashboard-container.sidebar-shift {
-  margin-left: 180px; /* match Sidebar open width */
+  margin-left: 220px; /* match Sidebar open width */
 }
 
 /* All other styles remain the same */

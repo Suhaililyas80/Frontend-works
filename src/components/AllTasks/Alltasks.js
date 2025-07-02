@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getTasks, updateTaskStatus, updatetaskdetails } from "../../api";
 import "./AllTasks.css";
 import { useLocation } from "react-router-dom";
+import { getTasksduetoday } from "../../api";
 
 const AllTasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -24,13 +25,26 @@ const AllTasks = () => {
     const statusParam = params.get("status") || "";
     const dueParam = params.get("due") || "";
 
-    if (statusParam || dueParam) {
-      // If dueParam is used, you might want to set a predefined status or filter
+    if (dueParam === "today") {
+      setLoading(true);
+      setError("");
+      getTasksduetoday()
+        .then((response) => {
+          setLoading(false);
+          const res = response.data.data.tasks || [];
+          setTasks(res);
+        })
+        .catch(() => {
+          setLoading(false);
+          setError("Failed to fetch today's due tasks");
+          setTasks([]);
+        });
+    } else if (statusParam) {
       setStatus(statusParam);
-      // You can also handle other params similarly
-      fetchTasks({ status: statusParam, due: dueParam });
+      fetchTasks({ status: statusParam });
+    } else {
+      fetchTasks();
     }
-    // eslint-disable-next-line
   }, [location.search]);
 
   //modal for updating task details
@@ -88,11 +102,11 @@ const AllTasks = () => {
   const [assignedby, setAssignedBy] = useState("");
   const [title, setTitle] = useState("");
 
-  useEffect(() => {
-    fetchTasks();
-    // eslint-disable-next-line
-  }, []);
-  console.log("showModal", showModal);
+  // useEffect(() => {
+  //   fetchTasks();
+  //   // eslint-disable-next-line
+  // }, []);
+  // console.log("showModal", showModal);
   const fetchTasks = (params = {}) => {
     setLoading(true);
     setError("");

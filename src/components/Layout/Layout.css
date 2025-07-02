@@ -45,9 +45,11 @@
   position: relative;
   background: none;
   min-height: calc(200vh - var(--topbar-height));
+  max-height: 100vh;
   padding: 0;
   box-sizing: border-box;
   transition: margin-left 0.3s;
+  /* color: white; */
   padding-top: 0;
   overflow-x: auto; /* <-- prevents overflow under topbar */
 }

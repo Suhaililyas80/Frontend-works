@@ -1,25 +1,41 @@
 import React from "react";
 import "./Sidebar2.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 function Sidebar2({ open, onToggle }) {
   const history = useHistory();
+  const location = useLocation();
 
-  const handleAllTasksClick = () => {
-    history.push("/AllTasks");
+  // const handleVmockDashboardClick = () => {
+  //   history.push("/VmockDashboard");
+  // };
+
+  // const handleAllTasksClick = () => {
+  //   history.push("/AllTasks");
+  // };
+  // const handleDeshboardClick = () => {
+  //   history.push("/Dashboard");
+  // };
+  // const handleLogoutClick = () => {
+  //   history.push("/logout");
+  // };
+  // const handleUserActivityClick = () => {
+  //   history.push("/UserActivities");
+  // };
+  // const handleNotificationClick = () => {
+  //   history.push("/Notification");
+  // };
+
+  const routes = {
+    home: "/VmockDashboard",
+    userManagement: "/Dashboard",
+    userActivities: "/UserActivities",
+    taskManagement: "/AllTasks",
+    notification: "/Notification",
+    logout: "/logout",
   };
-  const handleDeshboardClick = () => {
-    history.push("/Dashboard");
-  };
-  const handleLogoutClick = () => {
-    history.push("/logout");
-  };
-  const handleUserActivityClick = () => {
-    history.push("/UserActivities");
-  };
-  const handleNotificationClick = () => {
-    history.push("/Notification");
-  };
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <div className={`sidebar2-root${open ? " open" : ""}`}>
@@ -34,26 +50,52 @@ function Sidebar2({ open, onToggle }) {
       </button>
       {open && (
         <div className="sidebar-menu">
-          <button className="sidebar-menu-btn" onClick={handleAllTasksClick}>
-            All Tasks
-          </button>
-          <button className="sidebar-menu-btn" onClick={handleDeshboardClick}>
-            Dashboard
-          </button>
           <button
-            className="sidebar-menu-btn"
-            onClick={handleUserActivityClick}
+            className={`sidebar-menu-btn${
+              isActive(routes.home) ? " active" : ""
+            }`}
+            onClick={() => history.push(routes.home)}
           >
-            User Activity
+            Home
           </button>
           <button
-            className="sidebar-menu-btn"
-            onClick={handleNotificationClick}
+            className={`sidebar-menu-btn${
+              isActive(routes.userManagement) ? " active" : ""
+            }`}
+            onClick={() => history.push(routes.userManagement)}
+          >
+            UserManagement
+          </button>
+          <button
+            className={`sidebar-menu-btn${
+              isActive(routes.userActivities) ? " active" : ""
+            }`}
+            onClick={() => history.push(routes.userActivities)}
+          >
+            UserActivities
+          </button>
+          <button
+            className={`sidebar-menu-btn${
+              isActive(routes.taskManagement) ? " active" : ""
+            }`}
+            onClick={() => history.push(routes.taskManagement)}
+          >
+            TaskManagement
+          </button>
+          <button
+            className={`sidebar-menu-btn${
+              isActive(routes.notification) ? " active" : ""
+            }`}
+            onClick={() => history.push(routes.notification)}
           >
             Notification
           </button>
-
-          <button className="sidebar-menu-btn" onClick={handleLogoutClick}>
+          <button
+            className={`sidebar-menu-btn${
+              isActive(routes.logout) ? " active" : ""
+            }`}
+            onClick={() => history.push(routes.logout)}
+          >
             Logout
           </button>
         </div>

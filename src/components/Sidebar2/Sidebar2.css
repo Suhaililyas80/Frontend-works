@@ -56,3 +56,12 @@
 .sidebar-menu-btn:hover {
   background: green;
 }
+
+/* active or not */
+
+.sidebar-menu-btn.active {
+  background: #e3f0ff;
+  color: #007bff;
+  /* border-left: 4px solid #007bff; */
+  font-weight: bold;
+}

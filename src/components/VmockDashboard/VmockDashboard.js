@@ -1,4 +1,4 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import "./VmockDashboard.css";
 import Sidebar2 from "../Sidebar2/Sidebar2";
 import { getUserByToken, getNumberoftasksbystatus } from "../../api";
@@ -28,7 +28,7 @@ export function VmockDashboard() {
   useEffect(() => {
     getTasksduetoday()
       .then((response) => {
-        const count = response.data.data;
+        const count = response.data.data.count;
         setTasksDueToday(typeof count === "number" ? count : 0);
       })
       .catch(() => {
@@ -42,7 +42,6 @@ export function VmockDashboard() {
     getUnreadNotifications()
       .then((response) => {
         const count = response.data.count || 0;
-        console.log("Unread Notifications Count:", count);
         setUnreadNotifications(typeof count === "number" ? count : 0);
       })
       .catch(() => {
@@ -235,10 +234,13 @@ export function VmockDashboard() {
             <div className="stat-label">Deleted</div>
             <div className="stat-value">{taskStatusData.deleted}</div>
           </div>
-          <div className="stat-box stat-tasksduetoday">
+          <Link
+            to="/AllTasks?due=today"
+            className="stat-box stat-tasksduetoday stat-link"
+          >
             <div className="stat-label">Today Due</div>
             <div className="stat-value">{tasksDueToday}</div>
-          </div>
+          </Link>
         </div>
         <Link
           to="/Notification"

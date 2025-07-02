@@ -21,6 +21,7 @@
   box-sizing: border-box;
   overflow-x: hidden;
   position: relative;
+  max-height: 100vh;
 }
 
 .vmock-dashboard-content.open {
