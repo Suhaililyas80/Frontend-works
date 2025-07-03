@@ -5,27 +5,6 @@ import { useHistory, useLocation } from "react-router-dom";
 function Sidebar2({ open, onToggle }) {
   const history = useHistory();
   const location = useLocation();
-
-  // const handleVmockDashboardClick = () => {
-  //   history.push("/VmockDashboard");
-  // };
-
-  // const handleAllTasksClick = () => {
-  //   history.push("/AllTasks");
-  // };
-  // const handleDeshboardClick = () => {
-  //   history.push("/Dashboard");
-  // };
-  // const handleLogoutClick = () => {
-  //   history.push("/logout");
-  // };
-  // const handleUserActivityClick = () => {
-  //   history.push("/UserActivities");
-  // };
-  // const handleNotificationClick = () => {
-  //   history.push("/Notification");
-  // };
-
   const routes = {
     home: "/VmockDashboard",
     userManagement: "/Dashboard",

@@ -7,10 +7,6 @@ export async function loginUser(email, password) {
   });
 }
 
-// Store token on login
-export function storeAccessToken(token) {
-  window.sessionStorage.setItem("accessToken", token);
-}
 // function to read cookie
 function getCookie(name) {
   const value = `; ${document.cookie}`;
@@ -56,6 +52,9 @@ export const UserListing = (params = {}) => {
   }
   return axios.post("http://localhost:8000/auth/user-listing", null, {
     params,
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
   });
 };
 
@@ -66,6 +65,9 @@ export const UserActivity = (params = {}) => {
     null,
     {
       params,
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
     }
   );
 };
@@ -95,6 +97,9 @@ export const DeleteUser = (ids = []) => {
 export const AssignRole = (user_id, role) => {
   return axios.post("http://localhost:8000/auth/assign-role", null, {
     params: { user_id, role },
+    headers: {
+      Authorization: `Bearer ${getAccessToken()}`,
+    },
   });
 };
 

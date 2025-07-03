@@ -17,6 +17,12 @@ const AllTasks = () => {
     end_date: "",
   });
 
+  // Filtering parameters
+  const [status, setStatus] = useState("");
+  const [userId, setUserId] = useState("");
+  const [assignedby, setAssignedBy] = useState("");
+  const [title, setTitle] = useState("");
+
   const location = useLocation();
 
   useEffect(() => {
@@ -95,18 +101,6 @@ const AllTasks = () => {
   };
 
   // Modal close handler
-
-  // Filtering parameters
-  const [status, setStatus] = useState("");
-  const [userId, setUserId] = useState("");
-  const [assignedby, setAssignedBy] = useState("");
-  const [title, setTitle] = useState("");
-
-  // useEffect(() => {
-  //   fetchTasks();
-  //   // eslint-disable-next-line
-  // }, []);
-  // console.log("showModal", showModal);
   const fetchTasks = (params = {}) => {
     setLoading(true);
     setError("");
@@ -263,14 +257,6 @@ const AllTasks = () => {
           </table>
         </div>
       )}
-      {/* {console.log(
-        "showModal:",
-        showModal,
-        "selectedTask:",
-        selectedTask,
-        "modalFields:",
-        modalFields
-      )} */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modalll">

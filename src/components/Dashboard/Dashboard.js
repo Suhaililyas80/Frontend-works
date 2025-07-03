@@ -4,7 +4,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import "../Sidebar/Sidebar.css";
 import "./Dashboard.css";
 import { useHistory } from "react-router-dom";
-import { handleCSV } from "../CsvDowanloadB";
+import { handleCSV } from "../CsvDownloadB";
 import { DeleteUsers } from "../DeleteUsers";
 import { AssignRoleC } from "../AssignRole";
 

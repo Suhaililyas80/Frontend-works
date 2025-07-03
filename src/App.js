@@ -10,7 +10,7 @@ import Login from "./components/Login/Login";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Logout from "./components/Logout/Logout";
 import UserActivities from "./components/UserActivities/UserActivities";
-import { isAuthenticated } from "./api"; // Assuming this function checks authentication status
+import { isAuthenticated } from "./api";
 import AllTasks from "./components/AllTasks/Alltasks";
 import { CreateTasks } from "./components/CreateTasks/CreateTasks";
 import { VmockDashboard } from "./components/VmockDashboard/VmockDashboard";
