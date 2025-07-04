@@ -37,11 +37,28 @@ export const registerUser = (name, email, password, password_confirmation) => {
   });
 };
 
-export async function forgotPassword(email) {
+export const verifyEmail = (token, email) => {
+  return axios.post("http://localhost:8000/auth/verify-email", null, {
+    params: { email, token },
+  });
+};
+
+export const forgotPassword = (email) => {
   return axios.post("http://localhost:8000/auth/forgot-password", null, {
     params: { email },
   });
-}
+};
+
+export const resetPassword = (
+  token,
+  email,
+  password,
+  password_confirmation
+) => {
+  return axios.post("http://localhost:8000/auth/reset-password", null, {
+    params: { token, email, password, password_confirmation },
+  });
+};
 
 export const UserListing = (params = {}) => {
   // if not authorised , dont open the page

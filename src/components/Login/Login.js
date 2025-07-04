@@ -4,6 +4,7 @@ import "./Login.css";
 import { loginUser } from "../../api";
 // import { storeAccessToken } from "../../api";
 import { useDispatch } from "react-redux";
+import ForgotPassword from "../ForgotPassword/ForgotPassword";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ function Login() {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -100,11 +102,25 @@ function Login() {
         <div className="Register">
           Don't have account ? <a href="/Register">Registerhere</a>
         </div>
-        {/* <div className="ForgetPassword">
-                    ForgetPassword
-                </div> */}
+        <div className="ForgotPassword">
+          Forgot Password ?{"  "}
+          <a
+            href="/#"
+            className="forgot-password-link"
+            onClick={(e) => {
+              e.preventDefault();
+              setShowForgotPassword(true);
+            }}
+          >
+            clickhere
+          </a>
+        </div>
       </form>
       {message && <div className="login-message">message</div>}
+      <ForgotPassword
+        isOpen={showForgotPassword}
+        onClose={() => setShowForgotPassword(false)}
+      />
     </div>
   );
 }

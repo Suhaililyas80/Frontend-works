@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -18,6 +18,8 @@ import Layout from "./components/Layout/Layout";
 import { NotifyUser } from "./components/NotifyUser";
 import Notification from "./components/Notification/Notification";
 import { useSelector } from "react-redux";
+import VerifyEmail from "./components/VerifyEmail/VerifyEmail";
+import ResetPassword from "./components/ResetPassword/ResetPassword";
 
 function App() {
   const userId = useSelector((state) => state.login.user_id);
@@ -28,6 +30,8 @@ function App() {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Registration} />
+          <Route path="/verify-email" component={VerifyEmail} />
+          <Route path="/reset-password" component={ResetPassword} />
           <Route
             path="/AllTasks"
             render={() => (
