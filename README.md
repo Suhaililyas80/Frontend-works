@@ -178,7 +178,7 @@ npm start
 
 ## Notes
 
-- For full functionality, use this frontend with the [Project-Lumen Backend](../Project-Lumen).
+- For full functionality, use this frontend with the [Project-Lumen Backend](https://github.com/Suhaililyas80/Project-Lumen).
 - All routes and API endpoints are protected via JWT and require proper login.
 
 ---
